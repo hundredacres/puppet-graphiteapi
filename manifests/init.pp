@@ -11,7 +11,6 @@ class graphiteapi (
   $graphiteapi_user         = $graphiteapi::params::graphiteapi_user,
   $graphiteapi_group        = $graphiteapi::params::graphiteapi_group,
   $virtualenv_path          = $graphiteapi::params::virtualenv_path,
-  $datasources              = $graphiteapi::params::datasources,
   $finders                  = $graphiteapi::params::finders,
   $whisper_paths            = $graphiteapi::params::whisper_paths,
   $graphiteapi_tz           = $graphiteapi::params::graphiteapi_tz,

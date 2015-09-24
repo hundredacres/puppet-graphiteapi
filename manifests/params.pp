@@ -6,6 +6,7 @@
 class graphiteapi::params (
   $bind_addr = '127.0.0.1',
   $bind_port = '8080',
+  $manage_repo = false,
 ) {
   case $::osfamily {
     'RedHat', 'Amazon': {
