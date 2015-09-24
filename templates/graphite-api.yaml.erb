@@ -1,9 +1,14 @@
 search_index: <%= @graphiteapi_search_index %>
 finders:
-  - graphite_api.finders.whisper.WhisperFinder
+<%- @finders.each do |f| -%>
+  - <%= f %>
+<%- end -%>
 functions:
   - graphite_api.functions.SeriesFunctions
   - graphite_api.functions.PieFunctions
+<%- if @datasources -%>
+
+<%- end -%>
 whisper:
   directories:
 <%- @whisper_paths.each do |d| -%>
@@ -11,3 +16,43 @@ whisper:
 <%- end -%>
 time_zone: <%= @graphiteapi_tz %>
 
+
+
+search_index: /srv/graphite/index
+finders:
+#  - graphite_api.finders.whisper.WhisperFinder
+  - graphite_api.finders.blueflood.TenantBluefloodFinder
+functions:
+  - graphite_api.functions.SeriesFunctions
+  - graphite_api.functions.PieFunctions
+blueflood:
+  urls:
+    - 'http://localhost:20000'
+  tenant: 1
+  enable_submetrics: false
+whisper:
+  directories:
+    - /srv/graphite/whisper
+time_zone: US/Pacific
+logging:
+  version: 1
+  disable_existing_loggers: true
+  handlers:
+    stdout:
+      class: logging.StreamHandler
+  loggers:
+    graphite_api:
+      handlers:
+        - stdout
+      propagate: true
+      level: INFO
+    root:
+      handlers:
+        - stdout
+      propagate: true
+      level: INFO
+cache:
+    type: 'filesystem'
+    dir: '/tmp/graphite-api-cache'
+allowed_origins:
+    - '*'

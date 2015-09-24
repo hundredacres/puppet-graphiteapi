@@ -3,7 +3,7 @@
 # This class is meant to be called from graphite
 # It sets variables according to platform
 #
-class graphiteapi::params ( 
+class graphiteapi::params (
   $bind_addr = '127.0.0.1',
   $bind_port = '8080',
 ) {
@@ -12,6 +12,8 @@ class graphiteapi::params (
       $graphiteapi_user  = 'nobody'
       $graphiteapi_group = 'nobody'
       $virtualenv_path = '/opt/graphite-api'
+      $datasources = []
+      $finders = ['graphite_api.finders.whisper.WhisperFinder']
       $whisper_paths = ['/var/lib/carbon/whisper']
       $graphiteapi_tz = 'America/New_York'
       $graphiteapi_search_index = '/srv/graphiteapi_index'
