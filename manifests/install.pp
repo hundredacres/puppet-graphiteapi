@@ -4,7 +4,7 @@ class graphiteapi::install {
   include graphiteapi::params
 
   # EPEL is needed for the packages.
-  if $managed_repo {
+  if $graphiteapi::manage_repo != false {
     Package {
       require => Class['epel'],
     }
