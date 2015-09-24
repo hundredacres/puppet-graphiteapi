@@ -9,22 +9,6 @@ functions:
 <%- if @datasources -%>
 
 <%- end -%>
-whisper:
-  directories:
-<%- @whisper_paths.each do |d| -%>
-    - <%= d %>
-<%- end -%>
-time_zone: <%= @graphiteapi_tz %>
-
-
-
-search_index: /srv/graphite/index
-finders:
-#  - graphite_api.finders.whisper.WhisperFinder
-  - graphite_api.finders.blueflood.TenantBluefloodFinder
-functions:
-  - graphite_api.functions.SeriesFunctions
-  - graphite_api.functions.PieFunctions
 blueflood:
   urls:
     - 'http://localhost:20000'
@@ -32,8 +16,10 @@ blueflood:
   enable_submetrics: false
 whisper:
   directories:
-    - /srv/graphite/whisper
-time_zone: US/Pacific
+<%- @whisper_paths.each do |d| -%>
+    - <%= d %>
+<%- end -%>
+time_zone: <%= @graphiteapi_tz %>
 logging:
   version: 1
   disable_existing_loggers: true
