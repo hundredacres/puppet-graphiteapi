@@ -4,8 +4,10 @@ class graphiteapi::install {
   include graphiteapi::params
 
   # EPEL is needed for the packages.
-  Package {
-    require => Class['epel'],
+  if $managed_repo {
+    Package {
+      require => Class['epel'],
+    }
   }
 
   # @TODO: Decouple this a bit if possible.
