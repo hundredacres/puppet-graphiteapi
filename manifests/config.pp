@@ -2,7 +2,7 @@
 #
 # This class is called from graphite
 #
-class graphiteapi::config {
+class graphiteapi::config inherits graphiteapi::params {
   file { '/etc/graphite-api.yaml':
     ensure  => present,
     owner   => $graphiteapi_user,
