@@ -15,9 +15,9 @@ class graphiteapi::install {
   # @TODO: Decouple this a bit if possible.
   if (!defined(Class['python'])) {
     class { 'python':
-      dev        => true,
-      pip        => true,
-      virtualenv => true,
+      dev        => 'present',
+      pip        => 'present',
+      virtualenv => 'present',
     }
   }
 
